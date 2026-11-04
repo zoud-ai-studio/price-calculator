@@ -31,3 +31,10 @@ test("creates an encoded email quote for the selected project and total", () => 
   assert.match(params.get("body") ?? "", new RegExp(projectTypes["business-website"].label));
   assert.match(params.get("body") ?? "", /\$2,400/);
 });
+
+test("encodes mailto spaces as percent escapes rather than plus signs", () => {
+  const mailto = buildQuoteMailto("landing-page", 1000);
+
+  assert.match(mailto, /subject=Quote%20request/);
+  assert.doesNotMatch(mailto, /\+/);
+});
