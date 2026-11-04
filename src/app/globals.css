@@ -6,11 +6,13 @@
 
 * { box-sizing: border-box; }
 
-body { margin: 0; }
+html, body { max-width: 100%; overflow-x: hidden; }
 
-main { padding: 2rem 1rem; }
+body { margin: 0; min-width: 0; }
 
-.calculator { margin: 0 auto; max-width: 42rem; }
+main { min-width: 0; padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem); }
+
+.calculator { margin: 0 auto; max-width: 42rem; min-width: 0; width: 100%; }
 
 h1 { margin: 0; font-size: clamp(2rem, 6vw, 3rem); }
 
@@ -24,7 +26,7 @@ legend { font-size: 1.125rem; font-weight: 700; }
 
 .option-list--inline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-.option { align-items: center; border: 1px solid #bfd0cf; border-radius: 0.5rem; cursor: pointer; display: flex; gap: 0.5rem; min-height: 3rem; padding: 0.75rem 1rem; }
+.option { align-items: center; border: 1px solid #bfd0cf; border-radius: 0.5rem; cursor: pointer; display: flex; gap: 0.5rem; min-height: 3rem; min-width: 0; padding: 0.75rem 1rem; }
 
 .option:has(input:checked) { border-color: #14b8a6; box-shadow: 0 0 0 2px #14b8a633; }
 
@@ -37,3 +39,8 @@ legend { font-size: 1.125rem; font-weight: 700; }
 .email-button { background: #14b8a6; border-radius: 0.5rem; color: #0a1628; display: inline-block; font-weight: 700; margin-top: 1rem; padding: 0.875rem 1.25rem; text-decoration: none; }
 
 .email-button:focus-visible, .option:has(input:focus-visible) { outline: 3px solid #0a1628; outline-offset: 3px; }
+
+@media (max-width: 375px) {
+  .option-list--inline { grid-template-columns: 1fr; }
+  .email-button { width: 100%; text-align: center; }
+}

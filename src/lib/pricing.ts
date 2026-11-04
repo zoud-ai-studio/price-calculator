@@ -22,10 +22,10 @@ export function formatPrice(price: number): string {
 }
 
 export function buildQuoteMailto(projectType: ProjectType, total: number): string {
-  const query = new URLSearchParams({
-    subject: "Quote request",
-    body: `Project type: ${projectTypes[projectType].label}\nTotal price: ${formatPrice(total)}`,
-  });
+  const subject = encodeURIComponent("Quote request");
+  const body = encodeURIComponent(
+    `Project type: ${projectTypes[projectType].label}\nTotal price: ${formatPrice(total)}`,
+  );
 
-  return `mailto:fathir.majeed@gmail.com?${query.toString()}`;
+  return `mailto:fathir.majeed@gmail.com?subject=${subject}&body=${body}`;
 }
